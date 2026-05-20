@@ -24,6 +24,16 @@
             </div>
 
             <div class="field">
+                <label for="currency">Currency</label>
+                <select id="currency" class="currency-select" onchange="calculateLoan()">
+                    <option value="INR">Indian Rupee (₹)</option>
+                    <option value="USD">US Dollar ($)</option>
+                    <option value="EUR">Euro (€)</option>
+                    <option value="GBP">British Pound (£)</option>
+                </select>
+            </div>
+
+            <div class="field">
                 <label for="interest-rate">Interest Rate</label>
                 <div class="input-group">
                     <input onchange="calculateLoan()" class="input" type="number" id="interest-rate" min="0" max="100" value="10" step="0.1">
@@ -38,7 +48,7 @@
 
             <div class="result-card">
                 <p class="result-label">Monthly Payment</p>
-                <p class="payment" id="payment">$0.00</p>
+                <p class="payment" id="payment">₹0.00</p>
             </div>
         </section>
     </div>
