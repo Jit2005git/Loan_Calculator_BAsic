@@ -1,15 +1,18 @@
 function calculateLoan() {
-  loanAmountValue = document.getElementById("loan-amount").value;
+  const loanAmountValue = parseFloat(document.getElementById("loan-amount").value) || 0;
+  const interestRateValue = parseFloat(document.getElementById("interest-rate").value) || 0;
+  const monthsToPayValue = parseInt(document.getElementById("months-to-pay").value, 10) || 1;
 
-  interestRateValue = document.getElementById("interest-rate").value;
+  const interest = (loanAmountValue * (interestRateValue * 0.01)) / monthsToPayValue;
+  const monthlyPayment = loanAmountValue / monthsToPayValue + interest;
+  const formattedPayment = monthlyPayment.toLocaleString("en-IN", {
+    style: "currency",
+    currency: "INR",
+    maximumFractionDigits: 2,
+  });
 
-  MonthsToPayValue = document.getElementById("months-to-pay").value;
-
-  interest = (loanAmountValue * (interestRateValue * 0.01)) / MonthsToPayValue;
-
-  monthlyPayment = (loanAmountValue / MonthsToPayValue + interest).toFixed(2);
-
-  document.getElementById(
-    "payment"
-  ).innerHTML = `Monthly Payment: ${monthlyPayment}`;
+  document.getElementById("payment").textContent = formattedPayment;
 }
+
+window.addEventListener("DOMContentLoaded", calculateLoan);
+
